@@ -24,7 +24,7 @@ I designed all the screens myself before building them.
 - CSS
 
 # Getting Started
-git clone https://github.com/YOUR-USERNAME/salita-flashcards.git
+git clone https://github.com/hannahrsb/salita-flashcards.git
 cd salita-flashcards
 npm install
 npm run dev
