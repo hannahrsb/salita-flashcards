@@ -194,16 +194,31 @@ function Recorder({ deck, recordings, setRecordings }) {
   );
 }
 
+const logoColors = ["#E2483D", "#F2A516", "#2F9E63", "#1F5BC7", "#E2483D", "#F2A516"];
+
 function Home({ onPick }) {
   return (
     <div>
-      <h1 className="logo">Salita</h1>
-      <p>Pumili ng deck!</p>
-      {decks.map((deck) => (
-        <button key={deck.id} className="deck" onClick={() => onPick(deck.id)}>
-          {deck.emoji} {deck.title} <small>({deck.english})</small>
-        </button>
-      ))}
+      <div className="sign">
+        <div className="sign-top">BIYAHENG</div>
+        <h1 className="logo">
+          {"SALITA".split("").map((letter, i) => (
+            <span key={i} style={{ color: logoColors[i] }}>
+              {letter}
+            </span>
+          ))}
+        </h1>
+      </div>
+      <p className="tagline">Pumili ng deck!</p>
+      <div className="decks">
+        {decks.map((deck) => (
+          <button key={deck.id} className="deck" onClick={() => onPick(deck.id)}>
+            <span className="deck-emoji">{deck.emoji}</span>
+            <span className="deck-title">{deck.title}</span>
+            <span className="deck-english">{deck.english}</span>
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
