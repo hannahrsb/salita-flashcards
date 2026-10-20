@@ -21,9 +21,10 @@ const decks = [
     emoji: "🏠",
     color: "#1F5BC7",
     cards: [
-      { word: "Nanay", english: "Mom", pic: "👩" },
-      { word: "Tatay", english: "Dad", pic: "👨" },
-      { word: "Lola", english: "Grandma", pic: "👵" },
+      { word: "Nanay", english: "Mom", pic: "👩", icon: "/icons/nanay.svg" },
+      { word: "Tatay", english: "Dad", pic: "👨", icon: "/icons/tatay.svg" },
+      { word: "Lola", english: "Grandma", pic: "👵", icon: "/icons/lola.svg" },
+      { word: "Lolo", english: "Grandpa", pic: "👴", icon: "/icons/lolo.svg" },
     ],
   },
   {
@@ -276,14 +277,14 @@ function Flashcards({ deck, onBack, recordings, setRecordings }) {
 
   return (
     <div>
-      <button onClick={onBack}>‹ Back</button>
+      <button onClick={onBack}>‹ Para po</button>
       <h2>{deck.title}</h2>
 
       <div className="nav">
         <button onClick={() => setMode("aral")}>📖 Aral</button>
         <button onClick={() => setMode("laro")}>🎮 Laro</button>
         <button onClick={() => setMode("record")}>🎙️ Record</button>
-      </div>
+      </div> 
 
       {mode === "aral" && (
         <>
