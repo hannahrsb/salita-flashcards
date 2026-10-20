@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@600;800&display=swap");
 
 body {
   margin: 0;
@@ -64,33 +64,102 @@ body {
 .decks {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 20px 16px;
   margin-top: 20px;
 }
 
-.deck {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+/* ---------- Jeepney deck tiles ---------- */
+
+.jeep {
+  width: 100%;
   margin: 0;
-  padding: 24px 12px;
-  background: white;
-  border-radius: 24px;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
-.deck-emoji {
-  font-size: 3.5rem;
+.jeep:active {
+  transform: translateY(3px);
+  box-shadow: none;
 }
 
-.deck-title {
+.jeep-sign {
+  width: 76%;
+  margin: 0 auto;
+  background: #1c2a5a;
+  color: #f2c230;
+  font-family: "Bungee", sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+  border-radius: 8px 8px 0 0;
+  padding: 4px 0 2px;
+}
+
+.jeep-body {
+  background: var(--deck);
+  border: 3px solid #1c2a5a;
+  border-radius: 12px;
+  box-shadow: 0 4px 0 #1c2a5a;
+  padding: 8px 8px 0;
+  overflow: hidden;
+}
+
+.jeep-windows {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.45fr;
+  gap: 6px;
+}
+
+.jeep-window {
+  aspect-ratio: 1;
+  background: #cfeaff;
+  border: 2.5px solid #1c2a5a;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1.6rem;
 }
 
-.deck-english {
-  font-size: 1rem;
+.jeep-window .pic-img {
+  width: 90%;
+  height: 90%;
+}
+
+.jeep-front {
+  aspect-ratio: auto;
+}
+
+.jeep-stripe {
+  height: 10px;
+  margin: 8px -8px 0;
+  background: #f2c230;
+  border-top: 2px solid #1c2a5a;
+}
+
+.jeep-wheels {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 16%;
+  margin-top: -12px;
+  position: relative;
+}
+
+.jeep-wheels span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #cfd5e0;
+  border: 8px solid #1c2a5a;
+}
+
+.jeep-english {
+  font-size: 0.95rem;
   font-weight: normal;
-  opacity: 0.6;
+  opacity: 0.7;
+  margin-top: 4px;
 }
 
 /* ---------- Flashcards ---------- */
@@ -105,6 +174,17 @@ body {
 
 .pic {
   font-size: 7rem;
+}
+
+.pic-img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: contain;
+}
+
+button .pic-img {
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 .word {
@@ -130,4 +210,34 @@ button {
   background: #ffc83d;
   color: #1c2a5a;
   border: 3px solid #1c2a5a;
-  border-radius: 14px;}
+  border-radius: 14px;
+  box-shadow: 0 4px 0 #1c2a5a;
+  padding: 8px 16px;
+  margin: 6px;
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #1c2a5a;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+/* ---------- Record mode ---------- */
+
+.record-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 3px solid #1c2a5a;
+  border-radius: 16px;
+  padding: 8px 14px;
+  margin: 10px 0;
+  font-size: 1.3rem;
+}

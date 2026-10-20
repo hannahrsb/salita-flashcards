@@ -7,10 +7,11 @@ const decks = [
     title: "Hayop",
     english: "Animals",
     emoji: "🐶",
+    color: "#E2483D",
     cards: [
-      { word: "Aso", english: "Dog", pic: "🐶", example: "Ang aso ay tumatahol." },
-      { word: "Pusa", english: "Cat", pic: "🐱" },
-      { word: "Ibon", english: "Bird", pic: "🐦" },
+      { word: "Aso", english: "Dog", pic: "🐶", icon: "/icons/aso.svg", example: "Ang aso ay tumatahol." },
+      { word: "Pusa", english: "Cat", pic: "🐱", icon: "/icons/pusa.svg", example: "Ang pusa ay ngumingiyaw." },
+      { word: "Ibon", english: "Bird", pic: "🐦", icon: "/icons/ibon.svg", example: "Ang ibon ay huni nang huni." },
     ],
   },
   {
@@ -18,6 +19,7 @@ const decks = [
     title: "Pamilya",
     english: "Family",
     emoji: "🏠",
+    color: "#1F5BC7",
     cards: [
       { word: "Nanay", english: "Mom", pic: "👩" },
       { word: "Tatay", english: "Dad", pic: "👨" },
@@ -29,6 +31,7 @@ const decks = [
     title: "Pagkain",
     english: "Food",
     emoji: "🍚",
+    color: "#2F9E63",
     cards: [
       { word: "Kanin", english: "Rice", pic: "🍚" },
       { word: "Saging", english: "Banana", pic: "🍌" },
@@ -40,6 +43,7 @@ const decks = [
     title: "Kulay",
     english: "Colors",
     emoji: "🎨",
+    color: "#E89A0C",
     cards: [
       { word: "Pula", english: "Red", pic: "🔴" },
       { word: "Asul", english: "Blue", pic: "🔵" },
@@ -68,10 +72,17 @@ function randomCard(cards) {
   return cards[i];
 }
 
+function Pic({ item }) {
+  if (item.icon) {
+    return <img src={item.icon} alt={item.word} className="pic-img" />;
+  }
+  return item.pic;
+}
+
 function Card({ card, recordings }) {
   return (
     <div className="card">
-      <div className="pic">{card.pic}</div>
+      <div className="pic"><Pic item={card} /></div>
       <h1 className="word">{card.word}</h1>
       <p className="english">{card.english}</p>
       <button onClick={() => say(card.word, recordings)}>🔊 Pakinggan</button>
@@ -82,7 +93,6 @@ function Card({ card, recordings }) {
     </div>
   );
 }
-
 
 function Quiz({ deck, recordings }) {
   const [answer, setAnswer] = useState(randomCard(deck.cards));
@@ -117,7 +127,7 @@ function Quiz({ deck, recordings }) {
       <button onClick={() => say(answer.word, recordings)}>🔊 Pakinggan</button>
       <div>
         {deck.cards.map((c) => (
-          <button key={c.word} onClick={() => check(c)}>{c.pic}</button>
+          <button key={c.word} onClick={() => check(c)}><Pic item={c} /></button>
         ))}
       </div>
       <p>{message}</p>
@@ -196,6 +206,30 @@ function Recorder({ deck, recordings, setRecordings }) {
 
 const logoColors = ["#E2483D", "#F2A516", "#2F9E63", "#1F5BC7", "#E2483D", "#F2A516"];
 
+function Jeepney({ deck, onPick }) {
+  return (
+    <button className="jeep" style={{ "--deck": deck.color }} onClick={() => onPick(deck.id)}>
+      <div className="jeep-sign">{deck.title.toUpperCase()}</div>
+      <div className="jeep-body">
+        <div className="jeep-windows">
+          {deck.cards.slice(0, 3).map((c) => (
+            <div key={c.word} className="jeep-window">
+              <Pic item={c} />
+            </div>
+          ))}
+          <div className="jeep-window jeep-front"></div>
+        </div>
+        <div className="jeep-stripe"></div>
+      </div>
+      <div className="jeep-wheels">
+        <span></span>
+        <span></span>
+      </div>
+      <div className="jeep-english">{deck.english}</div>
+    </button>
+  );
+}
+
 function Home({ onPick }) {
   return (
     <div>
@@ -212,11 +246,7 @@ function Home({ onPick }) {
       <p className="tagline">Pumili ng deck!</p>
       <div className="decks">
         {decks.map((deck) => (
-          <button key={deck.id} className="deck" onClick={() => onPick(deck.id)}>
-            <span className="deck-emoji">{deck.emoji}</span>
-            <span className="deck-title">{deck.title}</span>
-            <span className="deck-english">{deck.english}</span>
-          </button>
+          <Jeepney key={deck.id} deck={deck} onPick={onPick} />
         ))}
       </div>
     </div>
