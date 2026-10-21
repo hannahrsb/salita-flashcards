@@ -34,9 +34,9 @@ const decks = [
     emoji: "🍚",
     color: "#2F9E63",
     cards: [
-      { word: "Kanin", english: "Rice", pic: "🍚" },
-      { word: "Saging", english: "Banana", pic: "🍌" },
-      { word: "Mangga", english: "Mango", pic: "🥭" },
+      { word: "Kanin", english: "Rice", pic: "🍚", icon: "/icons/kanin.svg" },
+      { word: "Saging", english: "Banana", pic: "🍌", icon: "/icons/saging.svg" },
+      { word: "Mangga", english: "Mango", pic: "🥭", icon: "/icons/mangga.svg" },
     ],
   },
   {
