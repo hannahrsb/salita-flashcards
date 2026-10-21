@@ -1,0 +1,34 @@
+<svg width="120" height="120" viewBox="8 7 104 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="sorbetesCone">
+      <path d="M44 64 L76 64 L60 106 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Apa (cone) -->
+  <path d="M44 64 L76 64 L60 106 Z" fill="#D9A06B"/>
+  <g clip-path="url(#sorbetesCone)" stroke="#B97F4A" stroke-width="2">
+    <line x1="40" y1="70" x2="70" y2="100"/>
+    <line x1="48" y1="62" x2="78" y2="92"/>
+    <line x1="80" y1="70" x2="50" y2="100"/>
+    <line x1="72" y1="62" x2="42" y2="92"/>
+  </g>
+  <path d="M44 64 L76 64 L60 106 Z" stroke="#1C2A5A" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Scoops -->
+  <circle cx="60" cy="58" r="16" fill="#8B5A3C" stroke="#1C2A5A" stroke-width="4"/>
+  <circle cx="60" cy="41" r="14.5" fill="#FFE38A" stroke="#1C2A5A" stroke-width="4"/>
+  <circle cx="60" cy="25" r="12" fill="#9B6BC9" stroke="#1C2A5A" stroke-width="4"/>
+
+  <!-- Sprinkles -->
+  <rect x="55" y="17" width="5" height="2" rx="1" transform="rotate(-25 57.5 18)" fill="#FFFFFF"/>
+  <rect x="63" y="21" width="5" height="2" rx="1" transform="rotate(30 65.5 22)" fill="#F2C230"/>
+  <rect x="56" y="27" width="5" height="2" rx="1" transform="rotate(10 58.5 28)" fill="#F09595"/>
+
+  <!-- Mukha -->
+  <circle cx="54" cy="42" r="2.6" fill="#1C2A5A"/>
+  <circle cx="66" cy="42" r="2.6" fill="#1C2A5A"/>
+  <ellipse cx="49" cy="47" rx="3.5" ry="2.5" fill="#F09595"/>
+  <ellipse cx="71" cy="47" rx="3.5" ry="2.5" fill="#F09595"/>
+  <path d="M57 46 Q60 49 63 46" stroke="#1C2A5A" stroke-width="2.2" stroke-linecap="round"/>
+</svg>

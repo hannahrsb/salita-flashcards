@@ -37,6 +37,7 @@ const decks = [
       { word: "Kanin", english: "Rice", pic: "🍚", icon: "/icons/kanin.svg" },
       { word: "Saging", english: "Banana", pic: "🍌", icon: "/icons/saging.svg" },
       { word: "Mangga", english: "Mango", pic: "🥭", icon: "/icons/mangga.svg" },
+      {word: "Sorbetes", english: "Ice Cream", pic: "🍦", icon: "/icons/sorbetes.svg" },
     ],
   },
   {
@@ -46,9 +47,9 @@ const decks = [
     emoji: "🎨",
     color: "#E89A0C",
     cards: [
-      { word: "Pula", english: "Red", pic: "🔴" },
-      { word: "Asul", english: "Blue", pic: "🔵" },
-      { word: "Dilaw", english: "Yellow", pic: "🟡" },
+      { word: "Pula", english: "Red", pic: "🔴", icon: "/icons/pula.svg" },
+      { word: "Asul", english: "Blue", pic: "🔵", icon: "/icons/asul.svg" },
+      { word: "Dilaw", english: "Yellow", pic: "🟡", icon: "/icons/dilaw.svg" },
     ],
   },
 ];

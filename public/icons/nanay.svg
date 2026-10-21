@@ -1,18 +1,21 @@
-<svg width="57" height="66" viewBox="0 0 57 66" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<use xlink:href="#stroke0_8_124" fill="#3A2A2A"/>
-<mask id="stroke1_8_124" fill="white">
-<use xlink:href="#stroke0_8_124"/>
-</mask>
-<path d="M0.000695872 28.164L0.205556 57.4769C0.236433 61.8951 3.84311 65.4517 8.26128 65.4208L48.1974 65.1417C52.6155 65.1108 56.1721 61.5042 56.1412 57.086L55.9364 27.7731C55.8284 12.3269 43.2193 -0.107251 27.7731 0.000698305V0.000698305C12.3269 0.108648 -0.107253 12.7178 0.000695872 28.164Z" stroke-width="4" stroke="#1C2A5A" mask="url(#stroke1_8_124)"/>
-<ellipse cx="28.6546" cy="37.316" rx="23" ry="22.5" fill="#E8B48A"/>
-<ellipse cx="13.1546" cy="45.816" rx="4.5" ry="4" fill="#F09595"/>
-<ellipse cx="44.1546" cy="45.816" rx="4.5" ry="4" fill="#F09595"/>
-<path d="M32.6546 38.816C36.3373 34.8461 38.3101 34.7859 41.6546 38.816" stroke-width="2" stroke="#1C2A5A"/>
-<path d="M14.6546 38.816C18.3373 34.8461 20.3101 34.7859 23.6546 38.816" stroke-width="2" stroke="#1C2A5A"/>
-<path d="M34.651 48.816C29.8569 53.6804 27.2291 53.816 22.6546 49.1061" stroke-width="2" stroke="#1C2A5A"/>
-<rect x="1.51059" y="29.3767" width="32.3716" height="6.95151" transform="rotate(-38.1238 1.51059 29.3767)" fill="#3A2A2A"/>
-<rect x="29.6453" y="9.36856" width="31.3452" height="7.23017" transform="rotate(33.5012 29.6453 9.36856)" fill="#3A2A2A"/>
-<defs>
-<path id="stroke0_8_124" d="M27.7731 0.000698305C43.2193 -0.107251 55.8284 12.3269 55.9364 27.7731L56.1412 57.086C56.1721 61.5042 52.6155 65.1108 48.1974 65.1417L8.26128 65.4208C3.84311 65.4517 0.236433 61.8951 0.205556 57.4769L0.000695866 28.164C-0.107253 12.7178 12.3269 0.108648 27.7731 0.000698305V0.000698305Z"/>
-</defs>
+<svg width="120" height="120" viewBox="20 21.5 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Buhok sa likod (bob) -->
+  <path d="M26 62 A34 36 0 0 1 94 62 L94 88 Q94 96 86 96 L34 96 Q26 96 26 88 Z" fill="#3A2A2A" stroke="#1C2A5A" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Mukha -->
+  <circle cx="60" cy="66" r="24" fill="#E8B48A" stroke="#1C2A5A" stroke-width="4"/>
+
+  <!-- Side bangs -->
+  <path d="M36 62 Q38 38 60 38 Q84 38 85 58 Q70 50 56 54 Q44 58 36 62 Z" fill="#3A2A2A" stroke="#1C2A5A" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <!-- Nakapikit na mata -->
+  <path d="M48 67 Q52 63 56 67" stroke="#1C2A5A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M64 67 Q68 63 72 67" stroke="#1C2A5A" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Blush -->
+  <ellipse cx="46" cy="75" rx="4.5" ry="3.2" fill="#F09595"/>
+  <ellipse cx="74" cy="75" rx="4.5" ry="3.2" fill="#F09595"/>
+
+  <!-- Ngiti -->
+  <path d="M56 77 Q60 81 64 77" stroke="#1C2A5A" stroke-width="2.5" stroke-linecap="round"/>
 </svg>

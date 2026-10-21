@@ -1,0 +1,26 @@
+<svg width="120" height="120" viewBox="21 25 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="splat">
+      <circle cx="60" cy="63" r="22"/>
+      <circle cx="43" cy="52" r="9"/>
+      <circle cx="79" cy="54" r="8"/>
+      <circle cx="74" cy="82" r="9"/>
+      <circle cx="46" cy="80" r="8"/>
+      <circle cx="61" cy="42" r="8"/>
+      <circle cx="31" cy="40" r="3.5"/>
+      <circle cx="91" cy="72" r="3"/>
+      <circle cx="54" cy="97" r="3"/>
+    </g>
+  </defs>
+  <!-- Outline, tapos kulay sa ibabaw -->
+  <use href="#splat" fill="#1C2A5A" stroke="#1C2A5A" stroke-width="8"/>
+  <use href="#splat" fill="#F2C230"/>
+  <!-- Kinang -->
+  <ellipse cx="47" cy="50" rx="3" ry="5" transform="rotate(30 47 50)" fill="#FFFFFF" fill-opacity="0.5"/>
+  <!-- Mukha -->
+  <circle cx="53" cy="62" r="3" fill="#1C2A5A"/>
+  <circle cx="67" cy="62" r="3" fill="#1C2A5A"/>
+  <ellipse cx="47" cy="69" rx="4.5" ry="3.2" fill="#F09595"/>
+  <ellipse cx="73" cy="69" rx="4.5" ry="3.2" fill="#F09595"/>
+  <path d="M56 69 Q60 73 64 69" stroke="#1C2A5A" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
