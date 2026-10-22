@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 const decks = [
@@ -113,9 +113,8 @@ function Card({ card, recordings }) {
   );
 }
 
-function Quiz({ deck, recordings }) {
+function Quiz({ deck, recordings, stars, setStars }) {
   const [answer, setAnswer] = useState(randomCard(deck.cards));
-  const [stars, setStars] = useState(0);
   const [answered, setAnswered] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -251,7 +250,7 @@ function Jeepney({ deck, onPick }) {
   );
 }
 
-function Home({ onPick }) {
+function Home({ onPick, stars }) {
   return (
     <div>
       <div className="sign">
@@ -264,6 +263,7 @@ function Home({ onPick }) {
           ))}
         </h1>
       </div>
+      <p className="stars"><Icon name="bituin" /> {stars}</p>
       <p className="tagline">Pumili ng deck!</p>
       <div className="decks">
         {decks.map((deck) => (
@@ -274,7 +274,7 @@ function Home({ onPick }) {
   );
 }
 
-function Flashcards({ deck, onBack, recordings, setRecordings }) {
+function Flashcards({ deck, onBack, recordings, setRecordings, stars, setStars }) {
   const [index, setIndex] = useState(0);
   const [mode, setMode] = useState("aral");
   const card = deck.cards[index];
@@ -321,7 +321,9 @@ function Flashcards({ deck, onBack, recordings, setRecordings }) {
           </div>
         </>
       )}
-      {mode === "laro" && <Quiz deck={deck} recordings={recordings} />}
+      {mode === "laro" && (
+        <Quiz deck={deck} recordings={recordings} stars={stars} setStars={setStars} />
+      )}
       {mode === "record" && (
         <Recorder deck={deck} recordings={recordings} setRecordings={setRecordings} />
       )}
@@ -332,7 +334,15 @@ function Flashcards({ deck, onBack, recordings, setRecordings }) {
 function App() {
   const [deckId, setDeckId] = useState(null);
   const [recordings, setRecordings] = useState({});
+  const [stars, setStars] = useState(() => {
+    const saved = localStorage.getItem("stars");
+    return saved ? JSON.parse(saved) : 0;
+  });
   const deck = decks.find((d) => d.id === deckId);
+
+  useEffect(() => {
+    localStorage.setItem("stars", JSON.stringify(stars));
+  }, [stars]);
 
   return (
     <div className="app">
@@ -342,9 +352,11 @@ function App() {
           onBack={() => setDeckId(null)}
           recordings={recordings}
           setRecordings={setRecordings}
+          stars={stars}
+          setStars={setStars}
         />
       ) : (
-        <Home onPick={setDeckId} />
+        <Home onPick={setDeckId} stars={stars} />
       )}
     </div>
   );
