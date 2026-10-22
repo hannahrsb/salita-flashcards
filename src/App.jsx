@@ -181,8 +181,11 @@ function Recorder({ deck, recordings, setRecordings }) {
 
     recorder.onstop = () => {
       const blob = new Blob(chunks, { type: recorder.mimeType });
-      const url = URL.createObjectURL(blob);
-      setRecordings({ ...recordings, [word]: url });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setRecordings((prev) => ({ ...prev, [word]: reader.result }));
+      };
+      reader.readAsDataURL(blob);
       stream.getTracks().forEach((t) => t.stop());
       setRecordingWord(null);
     };
@@ -194,6 +197,14 @@ function Recorder({ deck, recordings, setRecordings }) {
 
   function stopRecording() {
     recorderRef.current.stop();
+  }
+
+  function deleteRecording(word) {
+    setRecordings((prev) => {
+      const copy = { ...prev };
+      delete copy[word];
+      return copy;
+    });
   }
 
   return (
@@ -215,7 +226,10 @@ function Recorder({ deck, recordings, setRecordings }) {
               <button onClick={() => startRecording(c.word)}>● Record</button>
             )}
             {recordings[c.word] && (
-              <button onClick={() => new Audio(recordings[c.word]).play()}>▶</button>
+              <>
+                <button onClick={() => new Audio(recordings[c.word]).play()}>▶</button>
+                <button onClick={() => deleteRecording(c.word)}>✕</button>
+              </>
             )}
           </div>
         </div>
@@ -333,7 +347,10 @@ function Flashcards({ deck, onBack, recordings, setRecordings, stars, setStars }
 
 function App() {
   const [deckId, setDeckId] = useState(null);
-  const [recordings, setRecordings] = useState({});
+  const [recordings, setRecordings] = useState(() => {
+    const saved = localStorage.getItem("recordings");
+    return saved ? JSON.parse(saved) : {};
+  });
   const [stars, setStars] = useState(() => {
     const saved = localStorage.getItem("stars");
     return saved ? JSON.parse(saved) : 0;
@@ -343,6 +360,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem("stars", JSON.stringify(stars));
   }, [stars]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("recordings", JSON.stringify(recordings));
+    } catch {
+      alert("Puno na ang storage! Burahin muna ang ibang recordings.");
+    }
+  }, [recordings]);
 
   return (
     <div className="app">
