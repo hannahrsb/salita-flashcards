@@ -37,7 +37,7 @@ const decks = [
       { word: "Kanin", english: "Rice", pic: "🍚", icon: "/icons/kanin.svg" },
       { word: "Saging", english: "Banana", pic: "🍌", icon: "/icons/saging.svg" },
       { word: "Mangga", english: "Mango", pic: "🥭", icon: "/icons/mangga.svg" },
-      {word: "Sorbetes", english: "Ice Cream", pic: "🍦", icon: "/icons/sorbetes.svg" },
+      { word: "Sorbetes", english: "Ice Cream", pic: "🍦", icon: "/icons/sorbetes.svg" },
     ],
   },
   {
@@ -75,22 +75,39 @@ function randomCard(cards) {
 }
 
 function Pic({ item }) {
-  if (item.icon) {
-    return <img src={item.icon} alt={item.word} className="pic-img" />;
+  const [broken, setBroken] = useState(false);
+
+  if (item.icon && !broken) {
+    return (
+      <img
+        src={item.icon}
+        alt={item.word}
+        className="pic-img"
+        onError={() => setBroken(true)}
+      />
+    );
   }
   return item.pic;
+}
+
+function Icon({ name }) {
+  return <img src={`/icons/${name}.svg`} alt="" className="ui-icon" />;
 }
 
 function Card({ card, recordings }) {
   return (
     <div className="card">
-      <div className="pic"><Pic item={card} /></div>
+      <div className="pic"><Pic key={card.word} item={card} /></div>
       <h1 className="word">{card.word}</h1>
       <p className="english">{card.english}</p>
-      <button onClick={() => say(card.word, recordings)}>🔊 Pakinggan</button>
+      <button className="icon-btn" onClick={() => say(card.word, recordings)}>
+        <Icon name="pakinggan" /> Pakinggan
+      </button>
       {card.example && <p className="example">{card.example}</p>}
       {card.example && (
-        <button onClick={() => speak(card.example)}>🔊 Pakinggan ang sentence</button>
+        <button className="icon-btn" onClick={() => speak(card.example)}>
+          <Icon name="pakinggan" /> Pakinggan ang sentence
+        </button>
       )}
     </div>
   );
@@ -124,9 +141,11 @@ function Quiz({ deck, recordings }) {
 
   return (
     <div>
-      <p>⭐ {stars}</p>
+      <p className="stars"><Icon name="bituin" /> {stars}</p>
       <h2>Alin ang {answer.word}?</h2>
-      <button onClick={() => say(answer.word, recordings)}>🔊 Pakinggan</button>
+      <button className="icon-btn" onClick={() => say(answer.word, recordings)}>
+        <Icon name="pakinggan" /> Pakinggan
+      </button>
       <div>
         {deck.cards.map((c) => (
           <button key={c.word} onClick={() => check(c)}><Pic item={c} /></button>
@@ -282,10 +301,16 @@ function Flashcards({ deck, onBack, recordings, setRecordings }) {
       <h2>{deck.title}</h2>
 
       <div className="nav">
-        <button onClick={() => setMode("aral")}>📖 Aral</button>
-        <button onClick={() => setMode("laro")}>🎮 Laro</button>
-        <button onClick={() => setMode("record")}>🎙️ Record</button>
-      </div> 
+        <button className={mode === "aral" ? "icon-btn tab active" : "icon-btn tab"} onClick={() => setMode("aral")}>
+          <Icon name="aral" /> Aral
+        </button>
+        <button className={mode === "laro" ? "icon-btn tab active" : "icon-btn tab"} onClick={() => setMode("laro")}>
+          <Icon name="laro" /> Laro
+        </button>
+        <button className={mode === "record" ? "icon-btn tab active" : "icon-btn tab"} onClick={() => setMode("record")}>
+          <Icon name="record" /> Record
+        </button>
+      </div>
 
       {mode === "aral" && (
         <>
