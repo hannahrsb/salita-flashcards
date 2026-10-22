@@ -74,6 +74,21 @@ function randomCard(cards) {
   return cards[i];
 }
 
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function makeRound(cards) {
+  const answer = randomCard(cards);
+  const wrong = shuffle(cards.filter((c) => c.word !== answer.word)).slice(0, 2);
+  return { answer, choices: shuffle([answer, ...wrong]) };
+}
+
 function Pic({ item }) {
   const [broken, setBroken] = useState(false);
 
@@ -114,9 +129,10 @@ function Card({ card, recordings }) {
 }
 
 function Quiz({ deck, recordings, stars, setStars }) {
-  const [answer, setAnswer] = useState(randomCard(deck.cards));
+  const [round, setRound] = useState(() => makeRound(deck.cards));
   const [answered, setAnswered] = useState(false);
   const [message, setMessage] = useState("");
+  const answer = round.answer;
 
   function check(c) {
     if (answered) {
@@ -133,7 +149,7 @@ function Quiz({ deck, recordings, stars, setStars }) {
   }
 
   function nextQuestion() {
-    setAnswer(randomCard(deck.cards));
+    setRound(makeRound(deck.cards));
     setMessage("");
     setAnswered(false);
   }
@@ -146,7 +162,7 @@ function Quiz({ deck, recordings, stars, setStars }) {
         <Icon name="pakinggan" /> Pakinggan
       </button>
       <div>
-        {deck.cards.map((c) => (
+        {round.choices.map((c) => (
           <button key={c.word} onClick={() => check(c)}><Pic item={c} /></button>
         ))}
       </div>
