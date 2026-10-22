@@ -271,3 +271,47 @@ button:active {
   width: 2.4rem;
   height: 2.4rem;
 }
+
+/* ---------- Banderitas ---------- */
+
+.banderitas {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  overflow: hidden;
+  border-top: 3px solid #1c2a5a;
+  filter: drop-shadow(0 2px 0 #1c2a5a);
+}
+
+.banderitas span {
+  flex-shrink: 0;
+  width: 28px;
+  height: 30px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* ---------- Laptop at mas malaking screens ---------- */
+
+.deck-screen {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .app {
+    max-width: 880px;
+  }
+
+  .decks {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .logo {
+    font-size: 4.5rem;
+  }
+
+  .banderitas span {
+    width: 36px;
+    height: 40px;
+  }
+}

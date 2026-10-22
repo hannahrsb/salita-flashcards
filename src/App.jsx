@@ -128,7 +128,7 @@ function Card({ card, recordings }) {
   );
 }
 
-function Quiz({ deck, recordings, stars, setStars }) {
+function Quiz({ deck, recordings, stars, setStars, learned, setLearned }) {
   const [round, setRound] = useState(() => makeRound(deck.cards));
   const [answered, setAnswered] = useState(false);
   const [message, setMessage] = useState("");
@@ -140,9 +140,12 @@ function Quiz({ deck, recordings, stars, setStars }) {
     }
 
     if (c.word === answer.word) {
-      setMessage("Tama! ⭐");
+      setMessage("Tama! 🎉");
       setStars(stars + 1);
       setAnswered(true);
+      if (!learned.includes(answer.word)) {
+        setLearned([...learned, answer.word]);
+      }
     } else {
       setMessage("Mali, subukan ulit!");
     }
@@ -280,7 +283,35 @@ function Jeepney({ deck, onPick }) {
   );
 }
 
-function Home({ onPick, stars }) {
+function Road({ learned }) {
+  const total = decks.flatMap((d) => d.cards).length;
+  const count = learned.length;
+  const pct = count / total;
+  const left = total - count;
+
+  return (
+    <div className="road-wrap">
+      <div className="road">
+        <div className="road-line"></div>
+        <div className="mini-jeep" style={{ left: `calc((100% - 70px) * ${pct})` }}>
+          <div className="mini-jeep-body"></div>
+          <div className="mini-jeep-wheels">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div className="lolas-house">🏡</div>
+      </div>
+      <p className="road-note">
+        {left === 0
+          ? "Nakarating ka na kay Lola! 🎉"
+          : `${left} salita pa bago makarating kay Lola!`}
+      </p>
+    </div>
+  );
+}
+
+function Home({ onPick, stars, learned }) {
   return (
     <div>
       <div className="sign">
@@ -304,7 +335,7 @@ function Home({ onPick, stars }) {
   );
 }
 
-function Flashcards({ deck, onBack, recordings, setRecordings, stars, setStars }) {
+function Flashcards({ deck, onBack, recordings, setRecordings, stars, setStars, learned, setLearned }) {
   const [index, setIndex] = useState(0);
   const [mode, setMode] = useState("aral");
   const card = deck.cards[index];
@@ -352,11 +383,30 @@ function Flashcards({ deck, onBack, recordings, setRecordings, stars, setStars }
         </>
       )}
       {mode === "laro" && (
-        <Quiz deck={deck} recordings={recordings} stars={stars} setStars={setStars} />
+        <Quiz
+          deck={deck}
+          recordings={recordings}
+          stars={stars}
+          setStars={setStars}
+          learned={learned}
+          setLearned={setLearned}
+        />
       )}
       {mode === "record" && (
         <Recorder deck={deck} recordings={recordings} setRecordings={setRecordings} />
       )}
+    </div>
+  );
+}
+
+const flagColors = ["#E2483D", "#F2C230", "#1F5BC7", "#2F9E63", "#FFFFFF"];
+
+function Banderitas() {
+  return (
+    <div className="banderitas" aria-hidden="true">
+      {Array.from({ length: 40 }).map((_, i) => (
+        <span key={i} style={{ background: flagColors[i % flagColors.length] }}></span>
+      ))}
     </div>
   );
 }
@@ -371,11 +421,19 @@ function App() {
     const saved = localStorage.getItem("stars");
     return saved ? JSON.parse(saved) : 0;
   });
+  const [learned, setLearned] = useState(() => {
+    const saved = localStorage.getItem("learned");
+    return saved ? JSON.parse(saved) : [];
+  });
   const deck = decks.find((d) => d.id === deckId);
 
   useEffect(() => {
     localStorage.setItem("stars", JSON.stringify(stars));
   }, [stars]);
+
+  useEffect(() => {
+    localStorage.setItem("learned", JSON.stringify(learned));
+  }, [learned]);
 
   useEffect(() => {
     try {
@@ -385,21 +443,26 @@ function App() {
     }
   }, [recordings]);
 
-  return (
-    <div className="app">
-      {deck ? (
-        <Flashcards
-          deck={deck}
-          onBack={() => setDeckId(null)}
-          recordings={recordings}
-          setRecordings={setRecordings}
-          stars={stars}
-          setStars={setStars}
-        />
-      ) : (
-        <Home onPick={setDeckId} stars={stars} />
-      )}
-    </div>
+    return (
+    <>
+      <Banderitas />
+      <div className="app">
+        {deck ? (
+          <Flashcards
+            deck={deck}
+            onBack={() => setDeckId(null)}
+            recordings={recordings}
+            setRecordings={setRecordings}
+            stars={stars}
+            setStars={setStars}
+            learned={learned}
+            setLearned={setLearned}
+          />
+        ) : (
+          <Home onPick={setDeckId} stars={stars} learned={learned} />
+        )}
+      </div>
+    </>
   );
 }
 
