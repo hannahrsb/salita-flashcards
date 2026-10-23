@@ -11,12 +11,10 @@ Each word category is a jeepney, and the words are its passengers riding in the 
 - **Laro** – hear a word and tap the right picture out of three choices to earn stars
 - **Record** – parents or grandparents record their own voice for each word, so kids hear family instead of a computer voice
 
-That last one is my favourite part. Hearing a word in lola's voice hits different than hearing it from a robot.
-
 ## Design
 The look is inspired by Philippine jeepney signage: bold hand-painted lettering, bright colours, and a lot of personality. Jeepneys are one of the most recognizable parts of everyday life in the Philippines, so the style makes the app feel playful and culturally familiar instead of like a textbook.
 
-I designed the screens and drew the word icons myself in Figma, in a chunky sticker style with thick navy outlines so they all feel like one family. Some details I'm proud of:
+I designed the screens and drew the word icons myself in Figma, in a chunky sticker style with thick navy outlines so they all feel like one family. 
 - The home screen sign reads **"Biyaheng Salita"**, like a jeepney route sign
 - The Back button says **"Para po!"**, what you say when you want to get off a jeep
 - The Laro icon is a **trumpo**, a classic Filipino toy
@@ -56,4 +54,4 @@ This was my first React project, built from scratch while learning as I went.
 - Saving data with `localStorage` and `useEffect`, including converting audio to base64 so it can be stored as text
 - Working with browser APIs for speech and recording
 - Designing for young users: big tap targets, picture-first cards, and audio for kids who can't read yet
-- Exporting clean SVGs from Figma (and learning the hard way about hidden backgrounds 😅)
+- Exporting clean SVGs from Figma (and learning the hard way about hidden backgrounds)
